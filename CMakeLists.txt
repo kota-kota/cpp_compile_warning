@@ -1,0 +1,48 @@
+cmake_minimum_required(VERSION 3.16)
+project(cpp_warning_test)
+add_executable(${PROJECT_NAME})
+target_sources(${PROJECT_NAME}
+    PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Waggregate-return.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Walloc-zero.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Walloca.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Warith-conversion.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Wbad-function-cast.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Wcast-align.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Wcast-align.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Wcast-qual.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Wconversion.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Wdate-time.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Wdouble-promotion.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Wduplicated-branches.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Wduplicated-cond.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Wfloat-conversion.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Wfloat-equal.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Wpendatic.cpp
+)
+target_include_directories(${PROJECT_NAME}
+    PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/src
+)
+target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_14)
+target_compile_options(${PROJECT_NAME}
+    PRIVATE
+        -g -O0 -Wall -Wextra
+        -Werror
+        #-Waggregate-return
+        #-Walloc-zero
+        #-Walloca
+        #-Warith-conversion
+        #$<$<COMPILE_LANGUAGE:C>:-Wbad-function-cast>
+        #-Wcast-align=strict
+        #-Wcast-qual
+        #-Wconversion
+        #-Wdate-time
+        #-Wdouble-promotion
+        #-Wduplicated-branches
+        #-Wduplicated-cond
+        #-Wfloat-conversion
+        #-Wfloat-equal
+        #-Wpedantic
+)

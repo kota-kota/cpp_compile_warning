@@ -3,5 +3,9 @@
         "editor.defaultFormatter": "ms-python.black-formatter"
     },
     "editor.formatOnSave": true,
-    "editor.formatOnPaste": true
+    "editor.formatOnPaste": true,
+    "files.associations": {
+        "cstdint": "cpp",
+        "cstdio": "cpp"
+    }
 }

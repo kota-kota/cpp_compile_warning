@@ -8,6 +8,7 @@ RUN apt-get update -qq \
         clang \
         clang-format \
         gcc \
+        g++ \
         git \
         python3 \
         python-is-python3 \
