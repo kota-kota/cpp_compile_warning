@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "editorconfig.editorconfig",
+        "ms-vscode.cpptools-extension-pack",
+        "ms-ceintl.vscode-language-pack-ja",
+        "ms-python.black-formatter",
+        "ms-python.python"
+    ]
+}
