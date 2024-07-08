@@ -19,6 +19,14 @@ target_sources(${PROJECT_NAME}
         ${CMAKE_CURRENT_SOURCE_DIR}/src/Wduplicated-cond.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/src/Wfloat-conversion.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/src/Wfloat-equal.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Wformat-nonliteral.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Wformat-security.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Wformat-signedness.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Wformat-y2k.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Winit-self.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Winline.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Wjump-misses-init.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Wlogical-op.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/src/Wpendatic.cpp
 )
 target_include_directories(${PROJECT_NAME}
@@ -44,5 +52,14 @@ target_compile_options(${PROJECT_NAME}
         #-Wduplicated-cond
         #-Wfloat-conversion
         #-Wfloat-equal
+        #-Wformat-nonliteral
+        #-Wformat-security
+        #-Wformat-signedness
+        #-Wformat-y2k
+        #-Winit-self
+        #-Winline
+        #-Winvalid-pch  # ???
+        #$<$<COMPILE_LANGUAGE:C>:-Wjump-misses-init>
+        #-Wlogical-op
         #-Wpedantic
 )
