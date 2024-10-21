@@ -4,16 +4,42 @@ RUN apt-get update -qq \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         tzdata \
         make \
-        cmake \
-        clang \
-        clang-format \
         gcc \
         g++ \
         git \
+        ca-certificates \
         python3 \
         python-is-python3 \
+        wget \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 ENV \
     TZ=Asia/Tokyo
+
+WORKDIR /tmp
+
+# cmake
+ARG CMAKE_REV="3.30.5"
+RUN wget "https://github.com/Kitware/CMake/releases/download/v${CMAKE_REV}/cmake-${CMAKE_REV}.tar.gz" && \
+    tar -zxvf cmake-${CMAKE_REV}.tar.gz && \
+    cd cmake-${CMAKE_REV} && \
+    mkdir build && \
+    cd build && \
+    ../bootstrap --parallel=4 -- -DCMAKE_USE_OPENSSL=OFF && \
+    make -j 4 && \
+    make install && \
+    cd ../../ && \
+    rm -fr cmake-${CMAKE_REV} cmake-${CMAKE_REV}.tar.gz
+
+# clang(llvm)
+ARG LLVM_REV="17.0.6"
+RUN git clone --depth=1 https://github.com/llvm/llvm-project.git -b llvmorg-${LLVM_REV} && \
+    cd llvm-project && \
+    mkdir build && \
+    cd build && \
+    cmake -DLLVM_ENABLE_PROJECTS=clang -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" ../llvm && \
+    make -j 4 && \
+    make install && \
+    cd ../../ && \
+    rm -fr llvm-project
